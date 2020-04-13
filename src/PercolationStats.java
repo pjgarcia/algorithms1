@@ -52,11 +52,14 @@ public class PercolationStats {
 
     // test client (see below)
     public static void main(String[] args) {
-        System.out.println("salu2");
+        PercolationStats ps = new PercolationStats(
+                Integer.valueOf(args[1]),
+                Integer.valueOf(args[2]));
+
         System.out.printf(
                 "mean\t\t\t= %f\n" +
                 "stddev\t\t\t= %f\n" +
                 "95% confidence interval = [%f, %f]\n",
-                1,2,3,4);
+                ps.mean(), ps.stddev(), ps.confidenceLo(), ps.confidenceHi());
     }
 }
