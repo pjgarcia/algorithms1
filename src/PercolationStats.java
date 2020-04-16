@@ -10,7 +10,9 @@ public class PercolationStats {
         this.computations = new double[trials];
         for (int i = 0; i < trials; i++) {
             Percolation trial = percolationTrial(n);
+            // [55 / (20*20), 70*(20*20), 0.55]
             this.computations[i] = ((float) trial.numberOfOpenSites()) / n*n;
+            System.out.printf("computation #%d finished: %f\n", i+1, this.computations[i]);
         }
     }
 
@@ -23,8 +25,8 @@ public class PercolationStats {
             do {
                 nextRow = StdRandom.uniform(n);
                 nextCol = StdRandom.uniform(n);
-            } while (!p.isOpen(nextRow, nextCol));
-
+            } while (p.isOpen(nextRow, nextCol));
+            System.out.printf("opening (%d, %d)\n", nextRow, nextCol);
             p.open(nextRow, nextCol);
         }
         return p;
@@ -53,8 +55,8 @@ public class PercolationStats {
     // test client (see below)
     public static void main(String[] args) {
         PercolationStats ps = new PercolationStats(
-                Integer.valueOf(args[1]),
-                Integer.valueOf(args[2]));
+                Integer.valueOf(args[0]),
+                Integer.valueOf(args[1]));
 
         System.out.printf(
                 "mean\t\t\t= %f\n" +
