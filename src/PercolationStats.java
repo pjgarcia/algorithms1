@@ -23,7 +23,7 @@ public class PercolationStats {
             do {
                 nextRow = StdRandom.uniform(n);
                 nextCol = StdRandom.uniform(n);
-            } while (!p.isOpen(nextRow, nextCol));
+            } while (p.isOpen(nextRow, nextCol));
 
             p.open(nextRow, nextCol);
         }
@@ -53,8 +53,8 @@ public class PercolationStats {
     // test client (see below)
     public static void main(String[] args) {
         PercolationStats ps = new PercolationStats(
-                Integer.valueOf(args[1]),
-                Integer.valueOf(args[2]));
+                Integer.valueOf(args[0]),
+                Integer.valueOf(args[1]));
 
         System.out.printf(
                 "mean\t\t\t= %f\n" +
