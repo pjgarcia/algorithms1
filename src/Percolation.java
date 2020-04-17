@@ -8,19 +8,20 @@ public class Percolation {
     private int side;
     private int top = 0;
     private int bottom;
+    private int opened;
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int N) {
         side = N;
         bottom = side * side + 1;
         grid = new WeightedQuickUnionUF(side * side + 2);
-        openedSpaces = new boolean[side +1][side +1];
+        openedSpaces = new boolean[side+1][side+1];
     }
 
     // opens the site (row, col) if it is not open already
     public void open(int i, int j) {
 
-        openedSpaces[i - 1][j - 1] = true;
+        openedSpaces[i][j] = true;
 
         if (i == 1) {
             grid.union(getGridIndex(i, j), top);
@@ -60,7 +61,14 @@ public class Percolation {
 
     // returns the number of open sites
     public int numberOfOpenSites() {
-        return 0;
+        for (int i = 0; i < side ; i++) {
+            for (int j = 0; j < side; j++) {
+                if(openedSpaces[i][j]){
+                    opened ++;
+                }
+            }
+        }
+        return opened;
     }
 
     //Does the system percolate?
@@ -68,12 +76,7 @@ public class Percolation {
         return grid.connected(top, bottom);
     }
 
-    // test client (optional)
-    public static void main(String[] args) {
-        System.out.println("salu3");
-    }
-
     private int getGridIndex(int i, int j) {
-        return side * (i - 1) + j;
+        return side * i  + j;
     }
 }

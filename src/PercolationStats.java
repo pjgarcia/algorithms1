@@ -59,7 +59,7 @@ public class PercolationStats {
         System.out.printf(
                 "mean\t\t\t= %f\n" +
                 "stddev\t\t\t= %f\n" +
-                "95% confidence interval = [%f, %f]\n",
+                "95%% confidence interval = [%f, %f]\n",
                 ps.mean(), ps.stddev(), ps.confidenceLo(), ps.confidenceHi());
     }
 }
