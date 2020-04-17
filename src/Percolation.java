@@ -23,21 +23,21 @@ public class Percolation {
 
         openedSpaces[i][j] = true;
 
-        if (i == 1) {
+        if (i == 0) {
             grid.union(getGridIndex(i, j), top);
         }
-        if (i == side) {
+        if (i == side-1) {
             grid.union(getGridIndex(i, j), bottom);
         }
 
-        if (i > 1 && isOpen(i - 1, j)) {
+        if (i > 0 && isOpen(i - 1, j)) {
             grid.union(getGridIndex(i, j), getGridIndex(i - 1, j));
         }
         if (i < side && isOpen(i + 1, j)) {
             grid.union(getGridIndex(i, j), getGridIndex(i + 1, j));
         }
 
-        if (j > 1 && isOpen(i, j - 1)) {
+        if (j > 0 && isOpen(i, j - 1)) {
             grid.union(getGridIndex(i, j), getGridIndex(i, j - 1));
         }
         if (j < side && isOpen(i, j + 1)) {
