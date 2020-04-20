@@ -11,8 +11,8 @@ public class PercolationStats {
         for (int i = 0; i < trials; i++) {
             Percolation trial = percolationTrial(n);
             // [55 / (20*20), 70*(20*20), 0.55]
-            this.computations[i] = ((float) trial.numberOfOpenSites()) / n*n;
-            System.out.printf("computation #%d finished: %f\n", i+1, this.computations[i]);
+            this.computations[i] = (float)trial.numberOfOpenSites() / (n*n);
+            //System.out.printf("computation #%d finished: %f%n", i+1, this.computations[i]);
         }
     }
 
@@ -26,7 +26,7 @@ public class PercolationStats {
                 nextRow = StdRandom.uniform(n);
                 nextCol = StdRandom.uniform(n);
             } while (p.isOpen(nextRow, nextCol));
-            System.out.printf("opening (%d, %d)\n", nextRow, nextCol);
+            //System.out.printf("opening (%d, %d)\n", nextRow, nextCol);
             p.open(nextRow, nextCol);
         }
         return p;
@@ -49,7 +49,7 @@ public class PercolationStats {
 
     // high endpoint of 95% confidence interval
     public double confidenceHi() {
-        return mean() - (1.96 * stddev() / Math.sqrt(computations.length));
+        return mean() + (1.96 * stddev() / Math.sqrt(computations.length));
     }
 
     // test client (see below)
@@ -59,9 +59,9 @@ public class PercolationStats {
                 Integer.valueOf(args[1]));
 
         System.out.printf(
-                "mean\t\t\t= %f\n" +
-                "stddev\t\t\t= %f\n" +
-                "95% confidence interval = [%f, %f]\n",
+                "mean\t\t\t= %f%n" +
+                "stddev\t\t\t= %f%n" +
+                "95%% confidence interval = [%f, %f]%n",
                 ps.mean(), ps.stddev(), ps.confidenceLo(), ps.confidenceHi());
     }
 }
