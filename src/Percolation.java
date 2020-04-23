@@ -50,14 +50,6 @@ public class Percolation {
         return openedSpaces[i][j];
     }
 
-    // is the site (row, col) full?
-    public boolean isFull(int i, int j) {
-        if (0 < i && i <= side && 0 < j && j <= side) {
-            return grid.connected(top, getGridIndex(i , j));
-        } else {
-            throw new IndexOutOfBoundsException();
-        }
-    }
 
     // returns the number of open sites
     public int numberOfOpenSites() {
